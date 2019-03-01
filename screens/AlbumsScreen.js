@@ -14,14 +14,18 @@ export default class AlbumsScreen extends React.Component {
     this.state = {
       albums: null
     };
-    actions.searchTracks('angra').then(albums => this.setState({ albums }));
+    this.searchTracks = this.searchTracks.bind(this);
+  }
+
+  searchTracks(artist) {
+    actions.searchTracks(artist).then(albums => this.setState({ albums }));
   }
 
   render() {
     const { albums } = this.state;
     return (
       <ScrollView style={styles.container}>
-        <SearchText />
+        <SearchText submitSearch={this.searchTracks} />
         <CardList
           data={albums}
           imageKey={'cover_big'}

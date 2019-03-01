@@ -14,8 +14,9 @@ export class SearchText extends React.Component {
     this.setState({ value });
   }
 
-  submitSearch() {
-    this.state.value;
+  onSubmitSearch() {
+    const { submitSearch } = this.props;
+    submitSearch(this.state.value);
   }
 
   render() {
@@ -27,7 +28,7 @@ export class SearchText extends React.Component {
           placeholder="Artist name..."
         />
         <Button
-          onPress={() => this.submitSearch()}
+          onPress={() => this.onSubmitSearch()}
           containerStyle={styles.container}
           title="Search"
         />
