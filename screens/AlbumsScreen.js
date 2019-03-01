@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { CardList } from '../components/CardList';
+import { SearchText } from '../components/SearchText';
 import * as actions from '../actions';
 
 export default class AlbumsScreen extends React.Component {
@@ -13,13 +14,14 @@ export default class AlbumsScreen extends React.Component {
     this.state = {
       albums: null
     };
-    actions.searchTracks('eminem').then(albums => this.setState({ albums }));
+    actions.searchTracks('angra').then(albums => this.setState({ albums }));
   }
 
   render() {
     const { albums } = this.state;
     return (
       <ScrollView style={styles.container}>
+        <SearchText />
         <CardList
           data={albums}
           imageKey={'cover_big'}
