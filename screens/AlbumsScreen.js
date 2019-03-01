@@ -11,29 +11,11 @@ export default class AlbumsScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      albums: [
-        {
-          title: 'Meteora',
-          image:
-            'https://cdn.shopify.com/s/files/1/0815/8995/products/linkin_park_meteora_grande.jpg?v=1428823373'
-        },
-        {
-          title: 'Meteora',
-          image:
-            'https://cdn.shopify.com/s/files/1/0815/8995/products/linkin_park_meteora_grande.jpg?v=1428823373'
-        },
-        {
-          title: 'Meteora',
-          image:
-            'https://cdn.shopify.com/s/files/1/0815/8995/products/linkin_park_meteora_grande.jpg?v=1428823373'
-        },
-        {
-          title: 'Meteora',
-          image:
-            'https://cdn.shopify.com/s/files/1/0815/8995/products/linkin_park_meteora_grande.jpg?v=1428823373'
-        }
-      ]
+      albums: []
     };
+    actions.searchTracks('eminem').then(albums => {
+      this.setState({ albums });
+    });
   }
 
   render() {

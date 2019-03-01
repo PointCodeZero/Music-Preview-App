@@ -9,7 +9,7 @@ const axiosInstance = axios.create({
 });
 
 export const searchTracks = singerName => {
-  return axiosInstance.get(`search?q=${singerName}`).then(data => {
-    return data;
+  return axiosInstance.get(`search?q=${singerName}`).then(res => {
+    const albums = res.data.data.map(item => item.album);
   });
 };
