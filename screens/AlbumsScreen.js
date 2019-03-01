@@ -11,7 +11,7 @@ export default class AlbumsScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      albums: []
+      albums: null
     };
     actions.searchTracks('eminem').then(albums => this.setState({ albums }));
   }
