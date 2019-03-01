@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  Button
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
@@ -19,7 +20,12 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
-    return <View style={styles.container} />;
+    const { navigate } = this.props.navigation;
+    return (
+      <View style={styles.container}>
+        <Button title="Albums" onPress={() => navigate('Albums')} />
+      </View>
+    );
   }
 }
 
