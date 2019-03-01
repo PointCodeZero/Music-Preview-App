@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { CardList } from '../components/CardList';
+import * as actions from '../actions';
 
 export default class AlbumsScreen extends React.Component {
   static navigationOptions = {
