@@ -13,9 +13,7 @@ export default class AlbumsScreen extends React.Component {
     this.state = {
       albums: []
     };
-    actions.searchTracks('eminem').then(albums => {
-      this.setState({ albums });
-    });
+    actions.searchTracks('eminem').then(albums => this.setState({ albums }));
   }
 
   render() {
@@ -24,7 +22,7 @@ export default class AlbumsScreen extends React.Component {
       <ScrollView style={styles.container}>
         <CardList
           data={albums}
-          imageKey={'image'}
+          imageKey={'cover_big'}
           titleKey={'title'}
           buttonText="Details"
         />
