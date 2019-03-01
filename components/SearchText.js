@@ -10,6 +10,10 @@ export class SearchText extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.input.focus();
+  }
+
   onChange(value) {
     this.setState({ value });
   }
@@ -23,6 +27,7 @@ export class SearchText extends React.Component {
     return (
       <View>
         <Input
+          ref={input => (this.input = input)}
           onChangeText={event => this.onChange(event)}
           containerStyle={styles.container}
           placeholder="Artist name..."
