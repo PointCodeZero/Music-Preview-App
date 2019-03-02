@@ -16,3 +16,11 @@ export const searchTracks = singerName => {
     return uniqueAlbums;
   });
 };
+
+export const getAlbumTracks = albumId => {
+  return axiosInstance.get(`album/${albumId}`).then(res => {
+    debugger;
+    const tracks = res.tracks.data;
+    return tracks;
+  });
+};
