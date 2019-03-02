@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Text } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { Avatar, Text, Icon, Divider, ListItem } from 'react-native-elements';
 import * as actions from '../actions';
 
 export default class AlbumDetailScreen extends React.Component {
@@ -12,6 +13,7 @@ export default class AlbumDetailScreen extends React.Component {
     this.state = {
       tracks: []
     };
+    this.renderTracks = this.renderTracks.bind(this);
   }
 
   componentDidMount() {
@@ -23,16 +25,68 @@ export default class AlbumDetailScreen extends React.Component {
       .catch(err => this.setState({ tracks: [] }));
   }
 
+  renderTracks() {
+    const { tracks } = this.state;
+    if (tracks && tracks.length > 0) {
+      return tracks.map(track, index => {
+        return (
+          <ListItem
+            key={index}
+            title={track.title}
+            leftIcon={{ name: 'play-arrow' }}
+            onPress={() => {}}
+            rightIcon={
+              <Icon
+                raised
+                name="start"
+                type="font-awesome"
+                color="#f50"
+                size={30}
+                onPress={() => {}}
+              />
+            }
+          />
+        );
+      });
+    } else {
+      return <Text>Not tracks</Text>;
+    }
+  }
+
   render() {
     const album = this.props.navigation.getParam('album', {});
-    return (
-      <ScrollView style={styles.container}>
-        <View>
-          <Text>Album title is {album.title}</Text>
-          <Text>Album title is {this.state.tracks.title}</Text>
-        </View>
-      </ScrollView>
-    );
+    const artist = this.props.navigation.getParam('artist', '');
+    if (album.id) {
+      return (
+        <ScrollView style={styles.container}>
+          <View>
+            <Avatar
+              size="xlarge"
+              rounded
+              source={{ uri: album.cover_medium }}
+            />
+            <View>
+              <Text h4>{album.title}</Text>
+              <Text h4>{artist}</Text>
+              <Icon
+                raised
+                name="play"
+                type="font-awesome"
+                color="#f50"
+                size={30}
+                onPress={() => {}}
+              />
+            </View>
+          </View>
+          <Divider style={{ backgroundColor: 'black' }} />
+          <View>{this.renderTracks()}</View>
+        </ScrollView>
+      );
+    } else {
+      <View>
+        <Text>Loading...</Text>
+      </View>;
+    }
   }
 }
 

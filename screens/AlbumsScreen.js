@@ -14,6 +14,7 @@ export default class AlbumsScreen extends React.Component {
     super();
     this.state = {
       albums: [],
+      artist: '',
       isFetching: false
     };
     this.searchTracks = this.searchTracks.bind(this);
@@ -22,7 +23,7 @@ export default class AlbumsScreen extends React.Component {
   }
 
   searchTracks(artist) {
-    this.setState({ albums: [], isFetching: true });
+    this.setState({ albums: [], artist, isFetching: true });
     actions
       .searchTracks(artist)
       .then(albums => this.setState({ albums, isFetching: false }))
@@ -31,6 +32,7 @@ export default class AlbumsScreen extends React.Component {
 
   renderBottomNavigation(album) {
     const { navigate } = this.props.navigation;
+    const { artist } = this.state;
     return (
       <View style={styles.albumMenu}>
         <Icon
@@ -42,7 +44,7 @@ export default class AlbumsScreen extends React.Component {
           size={30}
         />
         <Icon
-          onPress={() => navigate('AlbumDetail', { album })}
+          onPress={() => navigate('AlbumDetail', { album, artist })}
           raised
           name="info"
           type="font-awesome"
