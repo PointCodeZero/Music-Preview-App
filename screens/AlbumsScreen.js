@@ -31,11 +31,11 @@ export default class AlbumsScreen extends React.Component {
 
   renderBottomNavigation() {
     return (
-      <View>
+      <View style={styles.albumMenu}>
         <Icon
           onPress={() => {}}
           raised
-          name="music"
+          name="play"
           type="font-awesome"
           color="#f50"
           size={30}
@@ -43,7 +43,7 @@ export default class AlbumsScreen extends React.Component {
         <Icon
           onPress={() => {}}
           raised
-          name="music"
+          name="info"
           type="font-awesome"
           color="#f50"
           size={30}
@@ -51,7 +51,7 @@ export default class AlbumsScreen extends React.Component {
         <Icon
           onPress={() => {}}
           raised
-          name="music"
+          name="thumbs-up"
           type="font-awesome"
           color="#f50"
           size={30}
@@ -89,5 +89,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 15,
     backgroundColor: '#fff'
+  },
+  albumMenu: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 });
