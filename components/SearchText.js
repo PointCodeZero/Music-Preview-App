@@ -8,6 +8,8 @@ export class SearchText extends React.Component {
     this.state = {
       value: ''
     };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmitSearch = this.onSubmitSearch.bind(this);
   }
 
   componentDidMount() {
