@@ -11,6 +11,7 @@ export default class AlbumDetailScreen extends React.Component {
   };
 
   render() {
-    return <Text>Hello</Text>;
+    const album = this.props.navigation.getParam('album', {});
+    return <Text>Album title is {album.title}</Text>;
   }
 }

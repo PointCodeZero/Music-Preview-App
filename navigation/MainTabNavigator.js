@@ -15,7 +15,7 @@ import AlbumDetailScreen from '../screens/AlbumDetailScreen';
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
   Albums: AlbumsScreen,
-  Detail: AlbumDetailScreen
+  AlbumDetail: AlbumDetailScreen
 });
 
 HomeStack.navigationOptions = {
