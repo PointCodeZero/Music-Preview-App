@@ -30,6 +30,7 @@ export default class AlbumsScreen extends React.Component {
   }
 
   renderBottomNavigation() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.albumMenu}>
         <Icon
@@ -41,7 +42,7 @@ export default class AlbumsScreen extends React.Component {
           size={30}
         />
         <Icon
-          onPress={() => {}}
+          onPress={() => navigate('Detail')}
           raised
           name="info"
           type="font-awesome"
