@@ -18,7 +18,7 @@ export const searchTracks = singerName => {
 };
 
 export const getAlbumTracks = albumId => {
-  return axiosInstance.get(`album/${albumId}`).then(res => {
-    res;
-  });
+  return axiosInstance
+    .get(`album/${albumId}`)
+    .then(res => res.data.tracks.data);
 };

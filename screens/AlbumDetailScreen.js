@@ -28,7 +28,7 @@ export default class AlbumDetailScreen extends React.Component {
   renderTracks() {
     const { tracks } = this.state;
     if (tracks && tracks.length > 0) {
-      return tracks.map(track, index => {
+      return tracks.map((track, index) => {
         return (
           <ListItem
             key={index}
@@ -38,7 +38,7 @@ export default class AlbumDetailScreen extends React.Component {
             rightIcon={
               <Icon
                 raised
-                name="start"
+                name="star"
                 type="font-awesome"
                 color="#f50"
                 size={30}
@@ -48,8 +48,6 @@ export default class AlbumDetailScreen extends React.Component {
           />
         );
       });
-    } else {
-      return <Text>Not tracks</Text>;
     }
   }
 
