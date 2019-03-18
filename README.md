@@ -1,12 +1,13 @@
 # Music Preview
 
-Music Preview let's you see all albums from your favorite artists and listen a 30 seconds preview of any music in that album.
+Music Preview let's you see all albums from your favorite artists and listen a 30 seconds preview of any music in that album. It was build for purposes of learning React Native and Expo.
 
 Music Preview is powered by front-end engines such as React Native, Expo and uses the unique [Deezer](https://developers.deezer.com/) API to integrate fun artists and albums search.
 
-<!-- ## Images
+## Images
 
-!["Screenshot of chat"](https://github.com/PointCodeZero/Chatty-App/blob/master/docs/chat.jpg?raw=true) -->
+!["Search Screen"](https://github.com/PointCodeZero/Music-Preview-App/blob/master/docs/search_screen.PNG)
+!["Album Screen"](https://github.com/PointCodeZero/Music-Preview-App/blob/master/docs/album_screen.PNG)
 
 ## Dependencies
 
