@@ -7,11 +7,7 @@ export default class LinksScreen extends React.Component {
   };
 
   render() {
-    return (
-      <ScrollView style={styles.container}>
-        <ExpoLinksView />
-      </ScrollView>
-    );
+    return <ScrollView style={styles.container} />;
   }
 }
 
