@@ -22,3 +22,25 @@ export const getAlbumTracks = albumId => {
     .get(`album/${albumId}`)
     .then(res => res.data.tracks.data);
 };
+
+export const _storeData = async (key, value) => {
+  const stringfyValue = JSON.stringfy(value);
+  try {
+    await AsyncStorage.setItem(key, stringfyValue);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const _retrieveData = async key => {
+  try {
+    const value = await AsyncStorage.getItem(key);
+    if (value !== null) {
+      console.log(value);
+      const parseValue = JSON.parse(value);
+      return parseValue;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
