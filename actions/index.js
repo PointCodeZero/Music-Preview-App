@@ -1,5 +1,6 @@
 import axios from 'axios';
 import _ from 'lodash';
+import { AsyncStorage } from 'react-native';
 
 const API_KEY = 'f59a1d0522msh61e3566696402a1p181d5bjsn6e1380519b9d';
 
@@ -23,16 +24,17 @@ export const getAlbumTracks = albumId => {
     .then(res => res.data.tracks.data);
 };
 
-export const _storeData = async (key, value) => {
-  const stringfyValue = JSON.stringfy(value);
+export const storeData = async (key, value) => {
+  const stringifyValue = JSON.stringify(value);
   try {
-    await AsyncStorage.setItem(key, stringfyValue);
+    await AsyncStorage.setItem(key, stringifyValue);
+    return stringifyValue;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const _retrieveData = async key => {
+export const retrieveData = async key => {
   try {
     const value = await AsyncStorage.getItem(key);
     if (value !== null) {
@@ -40,6 +42,15 @@ export const _retrieveData = async key => {
       const parseValue = JSON.parse(value);
       return parseValue;
     }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const clearStorage = async () => {
+  try {
+    await AsyncStorage.clear();
+    return true;
   } catch (error) {
     console.log(error);
   }

@@ -11,12 +11,12 @@ export default class SettingsScreen extends React.Component {
     /* Go ahead and delete ExpoConfigView and replace it with your
      * content, we just wanted to give you a quick view of your config */
     return (
-      <View>
+      <React.Fragment>
         <Button
           title="Navigate to Storage"
           onPress={() => this.props.navigation.navigate('Storage')}
         />
-      </View>
+      </React.Fragment>
     );
   }
 }
