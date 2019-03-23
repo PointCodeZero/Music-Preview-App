@@ -8,24 +8,39 @@ export default class StorageScreen extends React.Component {
     title: 'Storage'
   };
 
+  constructor() {
+    super();
+    this.state = {
+      value: ''
+    };
+  }
+
   async storeData() {
     const data = {
       value: 'Some Data'
     };
     const value = await actions.storeData('someKey', data);
     if (value) {
-      console.log(value);
+      console.log('store: ', value);
     }
   }
 
   async retriveData() {
-    const value = await actions.retrieveData('someKey');
-    console.log(value);
+    this.setState({
+      value: ''
+    });
+    const data = await actions.retrieveData('someKey');
+    if (data) {
+      this.setState({
+        value: data.value
+      });
+    }
   }
 
   async removeData() {}
 
   render() {
+    const { value } = this.state;
     return (
       <ScrollView style={styles.container}>
         <Text>Hello!</Text>
@@ -48,6 +63,8 @@ export default class StorageScreen extends React.Component {
             this.removeData();
           }}
         />
+
+        <Text>{value}</Text>
       </ScrollView>
     );
   }
