@@ -46,3 +46,12 @@ export const retrieveData = async key => {
     console.log(error);
   }
 };
+
+export const clearStorage = async () => {
+  try {
+    await AsyncStorage.clear();
+    return true;
+  } catch (error) {
+    console.log(error);
+  }
+};

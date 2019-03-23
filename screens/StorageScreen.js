@@ -37,7 +37,14 @@ export default class StorageScreen extends React.Component {
     }
   }
 
-  async removeData() {}
+  async removeData() {
+    const success = await actions.clearStorage();
+    if (success) {
+      this.setState({
+        value: ''
+      });
+    }
+  }
 
   render() {
     const { value } = this.state;
