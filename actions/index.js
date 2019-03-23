@@ -23,16 +23,17 @@ export const getAlbumTracks = albumId => {
     .then(res => res.data.tracks.data);
 };
 
-export const _storeData = async (key, value) => {
+export const storeData = async (key, value) => {
   const stringfyValue = JSON.stringfy(value);
   try {
     await AsyncStorage.setItem(key, stringfyValue);
+    return value;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const _retrieveData = async key => {
+export const retrieveData = async key => {
   try {
     const value = await AsyncStorage.getItem(key);
     if (value !== null) {
