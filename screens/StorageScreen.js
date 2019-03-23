@@ -18,7 +18,10 @@ export default class StorageScreen extends React.Component {
     }
   }
 
-  async retriveData() {}
+  async retriveData() {
+    const value = await actions.retrieveData('someKey');
+    console.log(value);
+  }
 
   async removeData() {}
 
