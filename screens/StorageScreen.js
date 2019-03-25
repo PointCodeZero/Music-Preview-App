@@ -28,11 +28,12 @@ export default class StorageScreen extends React.Component {
     this.setState({
       value: ''
     });
-    const data = await actions.retrieveData('someKey');
+    const data = await actions.retrieveData('favoriteAlbums');
     if (data) {
-      this.setState({
-        value: data.value
-      });
+      console.log(data);
+      // this.setState({
+      //   value: data.value
+      // });
     }
   }
 
