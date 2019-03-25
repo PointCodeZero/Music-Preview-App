@@ -21,7 +21,6 @@ export default class StorageScreen extends React.Component {
     };
     const value = await actions.storeData('someKey', data);
     if (value) {
-      console.log('store: ', value);
     }
   }
 

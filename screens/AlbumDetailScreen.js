@@ -32,6 +32,23 @@ export default class AlbumDetailScreen extends React.Component {
       .catch(err => this.setState({ tracks: [] }));
   }
 
+  async saveTrackToFavorite(album, track) {
+    const favoriteAlbums = (await actions.retrieveData('favoriteAlbums')) || {};
+    let albumData = favoriteAlbums[album.id];
+    if (!albumData) {
+      albumData = album;
+    }
+    if (!albumData['tracks']) {
+      albumData['tracks'] = {};
+    }
+    albumData['tracks'][track.id] = track;
+    favoriteAlbums[album.id] = albumData;
+    const success = actions.storeData('favoriteAlbums', favoriteAlbums);
+    if (success) {
+      console.log(success);
+    }
+  }
+
   renderTracks() {
     const { tracks } = this.state;
     if (tracks && tracks.length > 0) {
