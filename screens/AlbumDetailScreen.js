@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Linking } from 'react-native';
+import { Alert, ScrollView, StyleSheet, View, Linking } from 'react-native';
 import {
   Avatar,
   Text,
@@ -45,7 +45,10 @@ export default class AlbumDetailScreen extends React.Component {
     favoriteAlbums[album.id] = albumData;
     const success = await actions.storeData('favoriteAlbums', favoriteAlbums);
     if (success) {
-      console.log(success);
+      actions.alerts(
+        'Track Added',
+        `Track ${track.title} from ${track.artist.name} was added to favorites!`
+      );
     }
   }
 

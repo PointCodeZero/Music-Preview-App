@@ -1,6 +1,6 @@
 import axios from 'axios';
 import _ from 'lodash';
-import { AsyncStorage } from 'react-native';
+import { Alert, AsyncStorage } from 'react-native';
 
 const API_KEY = 'f59a1d0522msh61e3566696402a1p181d5bjsn6e1380519b9d';
 
@@ -53,4 +53,13 @@ export const clearStorage = async () => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const alerts = (alert, message) => {
+  Alert.alert(
+    `${alert}`,
+    `${message}`,
+    [{ text: 'Continue', onPress: () => console.log('OK Pressed') }],
+    { cancelable: false }
+  );
 };
