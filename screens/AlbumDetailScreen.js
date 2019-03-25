@@ -32,7 +32,24 @@ export default class AlbumDetailScreen extends React.Component {
       .catch(err => this.setState({ tracks: [] }));
   }
 
-  renderTracks() {
+  async saveTrackToFavorite(album, track) {
+    const favoriteAlbums = (await actions.retrieveData('favoriteAlbums')) || {};
+    let albumData = favoriteAlbums[album.id];
+    if (!albumData) {
+      albumData = album;
+    }
+    if (!albumData['tracks']) {
+      albumData['tracks'] = {};
+    }
+    albumData['tracks'][track.id] = track;
+    favoriteAlbums[album.id] = albumData;
+    const success = await actions.storeData('favoriteAlbums', favoriteAlbums);
+    if (success) {
+      console.log(success);
+    }
+  }
+
+  renderTracks(album) {
     const { tracks } = this.state;
     if (tracks && tracks.length > 0) {
       return tracks.map((track, index) => {
@@ -42,7 +59,7 @@ export default class AlbumDetailScreen extends React.Component {
             key={index}
             title={track.title}
             leftIcon={{ name: 'play-arrow' }}
-            onPress={() => Linking.openURL(track.preview)}
+            leftIconOnPress={() => Linking.openURL(track.preview)}
             rightIcon={
               <Icon
                 raised
@@ -50,7 +67,7 @@ export default class AlbumDetailScreen extends React.Component {
                 type="font-awesome"
                 color="#f50"
                 size={30}
-                onPress={() => {}}
+                onPress={() => this.saveTrackToFavorite(album, track)}
               />
             }
           />
@@ -92,7 +109,7 @@ export default class AlbumDetailScreen extends React.Component {
             </View>
           </View>
           <Divider style={{ backgroundColor: 'black' }} />
-          <View>{this.renderTracks()}</View>
+          <View>{this.renderTracks(album)}</View>
         </ScrollView>
       );
     } else {

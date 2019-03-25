@@ -30,6 +30,19 @@ export default class AlbumsScreen extends React.Component {
       .catch(err => this.setState({ albums: [], isFetching: false }));
   }
 
+  async saveAlbumToFavorite(album) {
+    const favoriteAlbums = (await actions.retrieveData('favoriteAlbums')) || {};
+    if (favoriteAlbums[album.id]) {
+      //Display some message to warn user
+      return false;
+    }
+    favoriteAlbums[album.id] = album;
+    const success = await actions.storeData('favoriteAlbums', favoriteAlbums);
+    if (success) {
+      console.log(success);
+    }
+  }
+
   renderBottomNavigation(album) {
     const { navigate } = this.props.navigation;
     const { artist } = this.state;
@@ -52,7 +65,7 @@ export default class AlbumsScreen extends React.Component {
           size={30}
         />
         <Icon
-          onPress={() => {}}
+          onPress={() => this.saveAlbumToFavorite(album)}
           raised
           name="thumbs-up"
           type="font-awesome"

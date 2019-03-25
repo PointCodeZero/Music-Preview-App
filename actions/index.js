@@ -38,7 +38,6 @@ export const retrieveData = async key => {
   try {
     const value = await AsyncStorage.getItem(key);
     if (value !== null) {
-      console.log(value);
       const parseValue = JSON.parse(value);
       return parseValue;
     }
