@@ -45,13 +45,9 @@ export default class AlbumDetailScreen extends React.Component {
     favoriteAlbums[album.id] = albumData;
     const success = await actions.storeData('favoriteAlbums', favoriteAlbums);
     if (success) {
-      Alert.alert(
+      actions.alerts(
         'Track Added',
-        `Track ${track.title} from ${
-          track.artist.name
-        } was added to favorites!`,
-        [{ text: 'Continue', onPress: () => console.log('OK Pressed') }],
-        { cancelable: false }
+        `Track ${track.title} from ${track.artist.name} was added to favorites!`
       );
     }
   }

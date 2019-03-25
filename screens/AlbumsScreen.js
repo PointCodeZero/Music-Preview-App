@@ -33,24 +33,15 @@ export default class AlbumsScreen extends React.Component {
   async saveAlbumToFavorite(album) {
     const favoriteAlbums = (await actions.retrieveData('favoriteAlbums')) || {};
     if (favoriteAlbums[album.id]) {
-      Alert.alert(
-        'Cannot add album',
-        'Album is already in favorites!',
-        [{ text: 'Continue', onPress: () => console.log('OK Pressed') }],
-        { cancelable: false }
-      );
+      actions.alerts('Cannot add album', 'Album is already in favorites!');
       return false;
     }
     favoriteAlbums[album.id] = album;
     const success = await actions.storeData('favoriteAlbums', favoriteAlbums);
     if (success) {
-      Alert.alert(
+      actions.alerts(
         'Album Added',
-        `Album ${album.title} from ${
-          this.state.artist
-        } was added to favorites!`,
-        [{ text: 'Continue', onPress: () => console.log('OK Pressed') }],
-        { cancelable: false }
+        `Album ${album.title} from ${this.state.artist} was added to favorites!`
       );
     }
   }
