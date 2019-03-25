@@ -1,13 +1,32 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
+import * as actions from '../actions';
 
-export default class LinksScreen extends React.Component {
+export default class FavoriteScreen extends React.Component {
   static navigationOptions = {
-    title: 'Links'
+    title: 'Favorites'
   };
 
+  constructor() {
+    super();
+    this.state = {
+      favoriteAlbums: undefined
+    };
+  }
+
+  async getFavoriteAlbums() {
+    const favoriteAlbums = await actions.retrieveData('favoriteAlbums');
+    if (favoriteAlbums) {
+      this.setState({ favoriteAlbums });
+    }
+  }
+
   render() {
-    return <ScrollView style={styles.container} />;
+    return (
+      <ScrollView style={styles.container}>
+        <Text> favorite screen </Text>
+      </ScrollView>
+    );
   }
 }
 
