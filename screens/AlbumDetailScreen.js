@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, ScrollView, StyleSheet, View, Linking } from 'react-native';
+import { ScrollView, StyleSheet, View, Linking } from 'react-native';
 import {
   Avatar,
   Text,
