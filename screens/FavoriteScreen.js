@@ -52,7 +52,7 @@ export default class FavoriteScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <ListItem>{this.renderFavoriteAlbums()}</ListItem>
+        {this.renderFavoriteAlbums()}
       </ScrollView>
     );
   }
