@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { Button, Card, ListItem } from 'react-native-elements';
 import * as actions from '../actions';
 import _ from 'lodash';
 
@@ -13,6 +14,11 @@ export default class FavoriteScreen extends React.Component {
     this.state = {
       favoriteAlbums: undefined
     };
+    this.renderFavoriteAlbums = this.renderFavoriteAlbums.bind(this);
+  }
+
+  componentWillMount() {
+    this.getFavoriteAlbums();
   }
 
   async getFavoriteAlbums() {
@@ -27,8 +33,8 @@ export default class FavoriteScreen extends React.Component {
     if (favoriteAlbums) {
       return _.map(favoriteAlbums, (album, id) => {
         return (
-          <View>
-            <Card key={id} title={album.title}>
+          <View key={id}>
+            <Card title={album.title}>
               <Button
                 title="Delete Album"
                 raised
@@ -46,7 +52,7 @@ export default class FavoriteScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Text> favorite screen </Text>
+        <ListItem>{this.renderFavoriteAlbums()}</ListItem>
       </ScrollView>
     );
   }
