@@ -1,6 +1,6 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { Button, Card, ListItem } from 'react-native-elements';
+import { Linking, ScrollView, StyleSheet, View } from 'react-native';
+import { Button, Card, Icon, ListItem } from 'react-native-elements';
 import * as actions from '../actions';
 import _ from 'lodash';
 
@@ -15,6 +15,7 @@ export default class FavoriteScreen extends React.Component {
       favoriteAlbums: undefined
     };
     this.renderFavoriteAlbums = this.renderFavoriteAlbums.bind(this);
+    this.renderFavoriteTracks = this.renderFavoriteTracks.bind(this);
   }
 
   componentWillMount() {
@@ -25,6 +26,29 @@ export default class FavoriteScreen extends React.Component {
     const favoriteAlbums = await actions.retrieveData('favoriteAlbums');
     if (favoriteAlbums) {
       this.setState({ favoriteAlbums });
+    }
+  }
+
+  renderFavoriteTracks(tracks) {
+    if (tracks) {
+      return _.map(tracks, (track, id) => {
+        return (
+          <ListItem
+            key={id}
+            title={track.title}
+            leftIcon={{ name: 'play-arrow' }}
+            rightIcon={
+              <Icon
+                raised
+                name="music"
+                type="font-awesome"
+                color="#f50"
+                onPress={() => Linking.openURL(track.preview)}
+              />
+            }
+          />
+        );
+      });
     }
   }
 
@@ -42,6 +66,7 @@ export default class FavoriteScreen extends React.Component {
                 name="trash"
                 onPress={() => {}}
               />
+              <View>{this.renderFavoriteTracks(album.tracks)}</View>
             </Card>
           </View>
         );
@@ -62,6 +87,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff'
+    backgroundColor: '#eaeaea'
   }
 });
