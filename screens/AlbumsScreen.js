@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { Text, Icon } from 'react-native-elements';
 import { CardList } from '../components/CardList';
 import { SearchText } from '../components/SearchText';
